@@ -52,5 +52,16 @@
 
 var filterFamilyMembers = function (familyTree, truthTest) {
   // All your code in this function body
+  var result =[];
+  if(truthTest(familyTree) === true) {
+    var fullName = familyTree['firstName'] + ' ' + familyTree['lastName'];
+    result.push(fullName);
+  }if(familyTree['children'].length !== 0) {
+    familyTree['children'].forEach(function(obj) {
+   var res = filterFamilyMembers(obj, truthTest);
+      result = result.concat(res)
+    });      
+  }
+   return result;
 };
 
